@@ -31,7 +31,20 @@ namespace Unity.RenderStreaming
         internal static readonly IntArgument MaxBitrate = new IntArgument("-maxBitrate");
         internal static readonly IntArgument Framerate = new IntArgument("-framerate");
 
-        static readonly List<IArgument> options = new List<IArgument>() { SignalingUrl, SignalingType, IceServerUrls, IceServerUsername, IceServerCredential, IceServerCredentialType, PollingInterval, ImportJson, MinBitrate, MaxBitrate, Framerate };
+        static readonly List<IArgument> options = new List<IArgument>() 
+        { 
+            SignalingUrl, 
+            SignalingType, 
+            IceServerUrls, 
+            IceServerUsername, 
+            IceServerCredential, 
+            IceServerCredentialType, 
+            PollingInterval, 
+            ImportJson, 
+            MinBitrate, 
+            MaxBitrate, 
+            Framerate 
+        };
 
         internal delegate bool TryParseDelegate<T>(string[] arguments, string argumentName, out T result);
 

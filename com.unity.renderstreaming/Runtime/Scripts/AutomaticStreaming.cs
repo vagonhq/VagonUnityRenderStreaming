@@ -25,6 +25,8 @@ namespace Unity.RenderStreaming
             broadcast = gameObject.AddComponent<Broadcast>();
 
             videoStreamSender = gameObject.AddComponent<VideoStreamSender>();
+            videoStreamSender.source = VideoStreamSource.Screen;
+            videoStreamSender.SetTextureSize(new Vector2Int(Screen.width, Screen.height));
 #if !UNITY_EDITOR
             var arguments = Environment.GetCommandLineArgs();
             if (CommandLineParser.TryParse(arguments)){
@@ -40,9 +42,6 @@ namespace Unity.RenderStreaming
                 }
             }
 #endif
-            videoStreamSender.source = VideoStreamSource.Screen;
-            videoStreamSender.SetTextureSize(new Vector2Int(Screen.width, Screen.height));
-
             broadcast.AddComponent(videoStreamSender);
 
             audioStreamSender = gameObject.AddComponent<AudioStreamSender>();
