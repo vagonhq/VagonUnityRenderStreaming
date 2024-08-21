@@ -27,6 +27,22 @@ namespace Unity.RenderStreaming
             videoStreamSender = gameObject.AddComponent<VideoStreamSender>();
             videoStreamSender.source = VideoStreamSource.Screen;
             videoStreamSender.SetTextureSize(new Vector2Int(Screen.width, Screen.height));
+
+#if !UNITY_EDITOR
+            var arguments = Environment.GetCommandLineArgs();
+            if (CommandLineParser.TryParse(arguments)){
+                if (CommandLineParser.MinBitrate.Value != null && CommandLineParser.MaxBitrate.Value != null &&
+                    CommandLineParser.MinBitrate.Value.Value <= CommandLineParser.MaxBitrate.Value.Value)
+                {
+                    videoStreamSender.SetBitrate((uint)CommandLineParser.MinBitrate.Value.Value, (uint)CommandLineParser.MaxBitrate.Value.Value);
+                }
+
+                if (CommandLineParser.Framerate.Value != null)
+                {
+                    videoStreamSender.SetFrameRate((float)CommandLineParser.Framerate.Value.Value);
+                }
+            }
+#endif
             broadcast.AddComponent(videoStreamSender);
 
             audioStreamSender = gameObject.AddComponent<AudioStreamSender>();
