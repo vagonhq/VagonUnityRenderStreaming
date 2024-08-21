@@ -27,8 +27,11 @@ namespace Unity.RenderStreaming
         internal static readonly EnumArgument<IceCredentialType> IceServerCredentialType = new EnumArgument<IceCredentialType>("-iceServerCredentialType");
         internal static readonly IntArgument PollingInterval = new IntArgument("-pollingInterval");
         internal static readonly JsonFileArgument<CommandLineInfo> ImportJson = new JsonFileArgument<CommandLineInfo>("-importJson");
+        internal static readonly IntArgument MinBitrate = new IntArgument("-minBitrate");
+        internal static readonly IntArgument MaxBitrate = new IntArgument("-maxBitrate");
+        internal static readonly IntArgument Framerate = new IntArgument("-framerate");
 
-        static readonly List<IArgument> options = new List<IArgument>() { SignalingUrl, SignalingType, IceServerUrls, IceServerUsername, IceServerCredential, IceServerCredentialType, PollingInterval, ImportJson };
+        static readonly List<IArgument> options = new List<IArgument>() { SignalingUrl, SignalingType, IceServerUrls, IceServerUsername, IceServerCredential, IceServerCredentialType, PollingInterval, ImportJson, MinBitrate, MaxBitrate, Framerate };
 
         internal delegate bool TryParseDelegate<T>(string[] arguments, string argumentName, out T result);
 
